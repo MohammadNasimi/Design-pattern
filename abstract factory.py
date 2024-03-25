@@ -16,13 +16,13 @@ class Car(ABC): # Abstract Factory
     def call_coupe(self):
         pass
     
-class Benz(Car): #Factory 
+class Benz(Car): # concrete Factory 
     def call_suv(self):
         return gla()
     def call_coupe(self):
         return cls()
     
-class Bmw(Car): #Factory 
+class Bmw(Car): # concrete Factory 
     def call_suv(self):
         return x1()
     def call_coupe(self):
@@ -38,19 +38,40 @@ class coupe(ABC): # abstract product
     def create_coupe(self):
         pass
     
-class gla(suv): # product
+class gla(suv): # concrete product
     def create_suv(self):
         return "this is you suv benz"
 
-class x1(suv): # product
+class x1(suv): # concrete product
     def create_suv(self):
         return "this is you x1 Bmw"
     
-class cls(coupe): # product
+class cls(coupe): # concrete product
     def create_coupe(self):
         return "this is you cls benz"
     
     
-class m2(coupe): # product
+class m2(coupe): # concrete product
     def create_coupe(self):
         return "this is you m2 Bmw"
+    
+    
+def client_suv(order): # client
+    brands ={
+        "Benz": Benz,
+        "Bmw": Bmw
+    }
+    suv = brands[order]().call_suv()
+    return suv.create_suv()
+    
+def client_coupe(order): # client
+    brands ={
+        "Benz": Benz,
+        "Bmw": Bmw
+    }
+    suv = brands[order]().call_coupe()
+    return suv.create_coupe()
+    
+    
+print(client_suv("Benz"))
+print(client_coupe("Bmw"))
