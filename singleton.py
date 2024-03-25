@@ -27,6 +27,7 @@ a = singleton.get_instance()
 b = singleton.get_instance()
 
 
+
 print(id(a))
 print(id(b))
 
