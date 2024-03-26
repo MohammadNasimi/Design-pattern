@@ -11,15 +11,15 @@ class Car: # product
         self._wheel = wheel
         
     def set_engine(self,engine):
-        self.c = engine
+        self._engine = engine
         
     def set_body(self,body):
         self._body = body
         
     def detail(self):
-        print(f'wheel :{self._wheel}')
-        print(f'engine :{self._engine}')
-        print(f'body :{self._body}')
+        print(f'wheel :{self._wheel.size}')
+        print(f'engine :{self._engine.hp}')
+        print(f'body :{self._body.shape}')
         
         
 
@@ -78,15 +78,27 @@ class Director:
     def set_builder(self,builder):
         self._builder = builder
         
-    def constract(self):
+    def construct(self):
         car = Car()
         
         body = self._builder.get_body()
         car.set_body(body)
         engine = self._builder.get_engine()
-        car.set_body(engine)
+        car.set_engine(engine)
         wheel = self._builder.get_wheel()
-        car.set_body(wheel)
+        car.set_wheel(wheel)
         
         return car
     
+def client_builder(builder):
+    builders ={
+        'Bmw': Bmw,
+        'Benz': Benz
+    }
+    car = builders[builder]()
+    director = Director()
+    director.set_builder(car)
+    result = director.construct()
+    return result.detail()
+
+client_builder('Bmw')
