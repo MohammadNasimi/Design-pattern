@@ -72,3 +72,21 @@ class Engine : hp = None
 class Body : shape = None
 
 
+class Director:
+    _builder = None
+    
+    def set_builder(self,builder):
+        self._builder = builder
+        
+    def constract(self):
+        car = Car()
+        
+        body = self._builder.get_body()
+        car.set_body(body)
+        engine = self._builder.get_engine()
+        car.set_body(engine)
+        wheel = self._builder.get_wheel()
+        car.set_body(wheel)
+        
+        return car
+    
