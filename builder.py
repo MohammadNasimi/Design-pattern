@@ -1,4 +1,6 @@
 
+from abc import ABC,abstractmethod
+
 class Car: # product
     def __init__(self) -> None:
             self._wheel = None
@@ -18,3 +20,19 @@ class Car: # product
         print(f'wheel :{self._wheel}')
         print(f'engine :{self._engine}')
         print(f'body :{self._body}')
+        
+        
+
+class Abstractbuilder(ABC):
+    
+    @abstractmethod
+    def get_wheel(self):
+        pass
+    
+    @abstractmethod
+    def get_engine(self):
+        pass
+    
+    @abstractmethod
+    def get_body(self):
+        pass
