@@ -9,7 +9,7 @@ class Prototype:
         self._objects[name]=obj
         
     def unregister(self,name):
-        self._objects[name]
+        del self._objects[name]
         
     def clone(self,name,**kwargs):
         cloned_obj = copy.deepcopy(self._objects.get(name))
